@@ -5,6 +5,7 @@ const password = require('./imp.js')
 const app = express();
 
 const url = `mongodb+srv://uzzmasaiyed:${password}@cluster0.7qwtx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+// const url = 'mongodb://localhost:27017'; //for local mongodb connection
 
 const client = new MongoClient(url);
 
