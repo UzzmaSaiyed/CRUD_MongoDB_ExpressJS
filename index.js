@@ -4,9 +4,9 @@ const password = require('./imp.js')
 
 const app = express();
 
-const url = `mongodb+srv://uzzmasaiyed:${password}@cluster0.7qwtx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 // const url = 'mongodb://localhost:27017'; //for local mongodb connection
 
+const url = `mongodb+srv://uzzu4074:${password}@cluster0.quzqv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 const client = new MongoClient(url);
 
 async function connect() {
@@ -19,22 +19,26 @@ async function connect() {
         console.error('Failed to connect to database', err);
     }
 }
+app.get("/", (req, res) => {
+    res.send("Welcome to the Product API!");
+});
 app.post("/CreateProducts", async (req, res) => {
     const db = await connect();
     const collection = db.collection("products");//collection name
     await collection.insertMany([{
-        Pname: "Pen",
-        Pprice: 20,
+        Pname: "Book",
+        Pprice: 200,
         Pquantity: 100
     },
     {
-        Pname: "Pencil",
-        Pprice: 200,
+        Pname: "Sharpner",
+        Pprice: 20,
         Pquantity: 1000
     }
     ]);
     res.send("Product inserted successfully");
 });
+
 
 app.get("/FetchProducts", async (req, res) => {
     const db = await connect();
